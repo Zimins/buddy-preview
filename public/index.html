@@ -514,6 +514,9 @@ function renderCard(container) {
               </div>
             `).join('')}
           </div>
+          <div style="padding:12px 20px 16px;border-top:1px solid var(--border);text-align:center;">
+            <button class="gacha-btn primary" onclick="switchToGacha()" style="width:100%">🥚 Make Mine!</button>
+          </div>
         </div>
       </div>
     `;
@@ -550,6 +553,14 @@ function renderGallery(container) {
       }).join('')}
     </div>
   `;
+}
+
+function switchToGacha() {
+  state.view = 'gacha';
+  state.gachaPhase = 'input';
+  cardMounted = false;
+  document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.view === 'gacha'));
+  render();
 }
 
 function selectSpecies(s) {
@@ -653,7 +664,7 @@ function doRandomRoll() {
 }
 
 // ── Share ──
-const SITE_URL = 'https://lightsoft-dev.github.io/buddy-preview/';
+const SITE_URL = window.location.origin + window.location.pathname;
 
 function buildShareText(c) {
   const sprite = renderSprite(c.species, c.eye, c.hat, 0);
