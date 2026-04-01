@@ -12,16 +12,16 @@ export async function generateMetadata({ searchParams }) {
   const c = rollCompanion(user);
   return {
     title: `${c.name} the ${c.species} — ${RARITY_STARS[c.rarity]} ${c.rarity.toUpperCase()}`,
-    description: `I hatched ${c.name}! A ${c.rarity} ${c.species} companion from Claude Code Buddy.`,
+    description: `I hatched ${c.name}! ${/^[aeiou]/i.test(c.rarity)?'An':'A'} ${c.rarity} ${c.species} companion from Claude Code Buddy.`,
     openGraph: {
       title: `${c.name} the ${c.species} — ${RARITY_STARS[c.rarity]} ${c.rarity.toUpperCase()}`,
-      description: `I hatched ${c.name}! A ${c.rarity} ${c.species} companion from Claude Code Buddy.`,
+      description: `I hatched ${c.name}! ${/^[aeiou]/i.test(c.rarity)?'An':'A'} ${c.rarity} ${c.species} companion from Claude Code Buddy.`,
       images: [`/api/og?user=${encodeURIComponent(user)}`],
     },
     twitter: {
       card: 'summary_large_image',
       title: `${c.name} the ${c.species}`,
-      description: `I hatched ${c.name}! A ${c.rarity} ${c.species} companion.`,
+      description: `I hatched ${c.name}! ${/^[aeiou]/i.test(c.rarity)?'An':'A'} ${c.rarity} ${c.species} companion.`,
       images: [`/api/og?user=${encodeURIComponent(user)}`],
     },
   };
