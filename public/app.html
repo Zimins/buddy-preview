@@ -654,8 +654,9 @@ function doGachaRoll() {
   render();
 }
 function doRandomRoll() {
-  state.gachaUserId = null;
-  state.gachaComp = rollCompanion('rng-' + Date.now() + Math.random());
+  const seed = 'rng-' + Date.now() + '-' + Math.floor(Math.random() * 99999);
+  state.gachaUserId = seed;
+  state.gachaComp = rollCompanion(seed);
   state.gachaPhase = 'hatching';
   // Force re-mount gacha card on next result render
   const old = document.getElementById('gachaSpriteContent');
